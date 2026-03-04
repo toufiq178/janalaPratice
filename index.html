@@ -123,13 +123,27 @@
     </section>
 
 
-    <section id="loading-container" class=" flex justify-center items-center hidden">
+    
+    <section class="flex justify-center items-center">
+        <div class="join">
+            <div>
+                <label class="input join-item">
+                    
+                    <input id="search-input" type="text" placeholder="Search Vocabularies" required />
+                </label>
+                
+            </div>
+            <button id="search-btn" class="btn btn-primary join-item">Search</button>
+        </div>
+    </section>
+    
+    <section id="loading-container" class=" flex justify-center items-center mt-10 hidden">
 
+        <span class="loading loading-infinity loading-sm"></span>
         <span class="loading loading-infinity loading-xl "></span>
+        <span class="loading loading-infinity loading-sm"></span>
 
     </section>
-
-
     <!-- <section  class="flex justify-center items-center">
         <div class="join">
             <div>
@@ -158,10 +172,10 @@
         <!-- Open the modal using ID.showModal() method -->
 
         <!-- Open the modal using ID.showModal() method -->
-        
+
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box text-left">
-                
+
                 <div id="detail-container" class="space-y-6">
 
                 </div>

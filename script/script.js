@@ -11,6 +11,25 @@ function pronounceWord(word) {
   window.speechSynthesis.speak(utterance);
 }
 
+const removeHidden = (status) => {
+
+    const loadingContainer = document.getElementById("loading-container");
+    const cardsSection = document.getElementById("cards-section");
+
+    if (status == true) {
+        
+        loadingContainer.classList.remove("hidden")
+        cardsSection.classList.add("hidden")
+
+    } else{
+        
+        cardsSection.classList.remove("hidden")
+        loadingContainer.classList.add("hidden")
+
+    }
+
+
+}
 
 const lessonLoad = () => {
 
@@ -23,7 +42,7 @@ const lessonLoad = () => {
 
 const loadWord = (id) => {
 
-    
+    removeHidden(true)
 
     const url = (`https://openapi.programming-hero.com/api/level/${id}`)
     fetch(url)
@@ -89,6 +108,7 @@ const loadDetailWord = (id) => {
 
 const displayDetails = (word) => {
 
+    
     const detailContainer = document.getElementById("detail-container");
     detailContainer.innerHTML = `
     
@@ -138,6 +158,8 @@ const displayWord = (words) => {
             </div>
 
         `
+
+        removeHidden(false)
         return
     }
 
@@ -163,6 +185,8 @@ const displayWord = (words) => {
 
         wordContainer.append(wordCard)
     });
+
+    removeHidden(false)
 
 }
 
@@ -193,7 +217,24 @@ const displayLesson = (lessons) => {
 }
 
 
+document.getElementById("search-btn").addEventListener("click", () => {
 
+    const input = document.getElementById("search-input");
+    const inputValue = input.value.toLowerCase().trim();
+
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then(res => res.json())
+    .then(data => {
+
+        const allWord = data.data
+        
+        const filterWord = allWord.filter(word => word.word.toLowerCase().trim().includes(inputValue)  ) 
+        
+        displayWord(filterWord)
+    })
+
+    
+})
 
 
 
